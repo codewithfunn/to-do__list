@@ -26,6 +26,15 @@ const ToDo = () => {
     setInputText('');;
     console.log(items)
   }
+
+  // delete item
+  const deleteItem = (id)=>{
+    setItems((prevValue)=>{
+      return prevValue.filter((item ,index)=>{
+        return index !==id; // it will return the array other than elememt which has this id 
+      })
+    })
+  }
   return (
     <div style={{minHeight:'500px' , minWidth:'250px' , maxWidth:'500px' }}  className="h-fit min-h-max w-1/4 my-4 rounded-2xl shadow-xl bg-slate-50 mx-auto text-center flex flex-col   align-middle bg-[url('../public/food.png')]">
         <div className="mt-5 h-4/5 flex flex-col justify-center">
@@ -39,12 +48,12 @@ const ToDo = () => {
         </div>
         <div className="my-7  ">
             <ul className='list-disc mx-3 ml-10'>
-               {items.map((todoItem) =>{
-                // return <li className='text-left my-3 py-2 ml-4'>jaspreet<AiFillDelete className='my-auto float-right active:text-Orange-custom-medium cursor-pointer'/></li>
-                console.log(todoItem)
+               {items.map((todoItem , index) =>{
                 return <ToDoItems
+                  key ={index}
+                  id ={index}
                   text = {todoItem}  // sending as a props to the ToDoItems Componenent
-                   
+                  onChecked = {deleteItem} 
                 />
                })} 
             </ul>

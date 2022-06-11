@@ -9,8 +9,18 @@ const ToDoItems = (props) => {
         })
     }
   return (
-    <div onClick={handleClick} >
-        <li style={{textDecoration: isDone?"line-through":"none"}} className={'text-left my-3 cursor-pointer py-2 ml-4'}>{props.text} <AiFillDelete className='my-auto float-right active:text-Orange-custom-medium cursor-pointer'/></li>
+    <div  >
+        <li  className={'text-left my-3 cursor-pointer py-2 ml-4'}>
+            <span onClick={handleClick} style={{textDecoration: isDone?"line-through":"none"}}>
+            {props.text}</span>
+
+            <AiFillDelete 
+            // onClick={props.onChecked(props.id)} // this will immediate  called and that is wrong
+            onClick={()=>{
+                props.onChecked(props.id) // this will call when the onClick event is triggered
+            }}
+             className='my-auto float-right active:text-Orange-custom-medium cursor-pointer'/>
+        </li>
 
     </div>
   )
