@@ -2,7 +2,9 @@ import React from 'react'
 import {AiFillDelete} from 'react-icons/ai';
 import {BiCommentAdd} from 'react-icons/bi';
 import { useState } from 'react'; 
+import ToDoItems from './ToDoItems';
 const ToDo = () => {
+  const input_empty = -1;
   const [inputText, setInputText] = useState("")
   const [items, setItems] = useState([])
   const handleChange =(event)=>{
@@ -12,10 +14,17 @@ const ToDo = () => {
   }
 
   const addItem = ()=>{
-    setItems(prevItems =>{
-      return [...prevItems, inputText];
-    })
-    setInputText('');
+    if(inputText==''){
+       input_empty = 1;
+       console.log('empty')
+    }
+    else{
+      setItems(prevItems =>{
+        return [...prevItems, inputText];
+      })
+    }
+    setInputText('');;
+    console.log(items)
   }
   return (
     <div style={{minHeight:'500px' , minWidth:'250px' , maxWidth:'500px' }}  className="h-fit min-h-max w-1/4 my-4 rounded-2xl shadow-xl bg-slate-50 mx-auto text-center flex flex-col   align-middle bg-[url('../public/food.png')]">
@@ -30,8 +39,13 @@ const ToDo = () => {
         </div>
         <div className="my-7  ">
             <ul className='list-disc mx-3 ml-10'>
-               {items.map(todoItems =>{
-                return <li className='text-left my-3 py-2 ml-4'>jaspreet<AiFillDelete className='my-auto float-right active:text-Orange-custom-medium cursor-pointer'/></li>
+               {items.map((todoItem) =>{
+                // return <li className='text-left my-3 py-2 ml-4'>jaspreet<AiFillDelete className='my-auto float-right active:text-Orange-custom-medium cursor-pointer'/></li>
+                console.log(todoItem)
+                return <ToDoItems
+                  text = {todoItem}  // sending as a props to the ToDoItems Componenent
+                   
+                />
                })} 
             </ul>
         </div>

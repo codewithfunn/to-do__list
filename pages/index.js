@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import ToDo from '../Components/ToDo'
- 
+import ToDoItems from '../Components/ToDoItems'
 
 export default function Home() {
   return (
