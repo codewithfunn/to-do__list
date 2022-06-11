@@ -15,6 +15,7 @@ const InputArea = (props) => {
     <button onClick={()=>{
         props.onAdd(inputText)
         setInputText('');    
+        props.tostify()
         }}
          className='flex flex-row mx-2 border-b-2 active:border-2 active:rounded-md border-Orange-custom-medium'> <BiCommentAdd className='flex  my-auto mx-2 hover:text-Orange-custom-medium' />Add</button>
     </div>

@@ -18,6 +18,7 @@ const ToDoItems = (props) => {
             // onClick={props.onChecked(props.id)} // this will immediate  called and that is wrong
             onClick={()=>{
                 props.onChecked(props.id) // this will call when the onClick event is triggered
+                props.deleteTost()
             }}
              className='my-auto float-right active:text-Orange-custom-medium cursor-pointer'/>
         </li>
