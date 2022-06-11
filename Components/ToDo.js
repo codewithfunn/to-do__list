@@ -1,19 +1,16 @@
 import React from 'react'
-import {AiFillDelete} from 'react-icons/ai';
-import {BiCommentAdd} from 'react-icons/bi';
 import { useState } from 'react'; 
 import ToDoItems from './ToDoItems';
+import InputArea from './InputArea';
+
+
 const ToDo = () => {
   const input_empty = -1;
-  const [inputText, setInputText] = useState("")
-  const [items, setItems] = useState([])
-  const handleChange =(event)=>{
-    const newValue = event.target.value;
-    setInputText(newValue)
-    console.log(newValue);
-  }
 
-  const addItem = ()=>{
+  const [items, setItems] = useState([])
+ 
+
+  const addItem = (inputText)=>{
     if(inputText==''){
        input_empty = 1;
        console.log('empty')
@@ -23,7 +20,7 @@ const ToDo = () => {
         return [...prevItems, inputText];
       })
     }
-    setInputText('');;
+  
     console.log(items)
   }
 
@@ -41,10 +38,9 @@ const ToDo = () => {
             <div className="flex w-64 mx-auto text-center py-2 ">
             <h1 className='font-bold font-serif text-2xl bg-Orange-custom-medium hover:border-2 cursor-pointer hover:border-Orange-custom-medium rounded-tl-3xl rounded-tr-lg rounded-bl-lg rounded-br-3xl py-1 px-4   flex mx-auto '>To-Do List</h1>
             </div>
-            <div className="flex flex-row justify-center my-5">
-            <input type="text" value={inputText} name='inputText' onChange={handleChange} className='bg-transparent border-b-2 border-dashed '/>
-            <button onClick={addItem} className='flex flex-row mx-2 border-b-2 active:border-2 active:rounded-md border-Orange-custom-medium'> <BiCommentAdd className='flex  my-auto mx-2 hover:text-Orange-custom-medium' />Add</button>
-            </div>
+          <InputArea
+          onAdd ={addItem}
+          />
         </div>
         <div className="my-7  ">
             <ul className='list-disc mx-3 ml-10'>
